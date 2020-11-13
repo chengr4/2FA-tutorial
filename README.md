@@ -12,5 +12,5 @@
 
 ## Reference
 
-[1] [Two Factor Authentication | Node.js & Speakeasy](https://youtu.be/KQya9i6czhM)
-[2] [speakeasy(https://github.com/speakeasyjs/speakeasy)
++ [Two Factor Authentication | Node.js & Speakeasy](https://youtu.be/KQya9i6czhM)
++ [speakeasy](https://github.com/speakeasyjs/speakeasy)
