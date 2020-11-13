@@ -6,7 +6,7 @@
 
 `npm i uuid speakeasy express node-json-db`
 
-### To not need to re-start server
+### No need to re-start server
 
 `npm i -D nodemon`
 
