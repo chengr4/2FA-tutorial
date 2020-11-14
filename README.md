@@ -2,6 +2,10 @@
 
 雙重認證 tutorial
 
+---
+
+before Verify, use temp_secrect to create token first
+
 ## NPM INSTALL
 
 `npm i uuid speakeasy express node-json-db`

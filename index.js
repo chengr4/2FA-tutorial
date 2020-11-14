@@ -49,6 +49,7 @@ app.post("/api/register", (req, res) => {
 app.post("/api/verify", (req,res) => {
 
   // get from client
+  // token comes from Authentication
   const { userId, token } = req.body;
   try {
     // Retrieve user from database
