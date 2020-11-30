@@ -4,7 +4,7 @@
 
 ---
 
-before Verify, use temp_secrect to create token first
+before Verify, use temp_secret to create token first
 
 ## NPM INSTALL
 
