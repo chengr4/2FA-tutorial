@@ -3,8 +3,10 @@
 雙重認證 tutorial
 
 ---
+Ps.
 
-before Verify, use temp_secrect to create token first
+1. before Verify, use `temp_secrect` to create token first
+1. 這個專案是個 Server ， Client 端可以用 `Postman`
 
 ## NPM INSTALL
 

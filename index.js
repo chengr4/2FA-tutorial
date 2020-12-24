@@ -17,26 +17,26 @@ const db = new JsonDB(new Config('mydatabase', true, false, '/'));
 
 const app = express();
 
-app.use(express.json())
+app.use(express.json());
 
 app.get("/api", (req,res) => {
   res.json({ message: "Welcome to the two factor authentication exmaple" })
 });
 
 // Register users & create temp secret
-/*
-當 user 發出 post request, server 產出一筆 secret 到 client 並且儲存在 DB
-*/
+// 當 user 發出 post request, server 產出一筆 secret key 到 client 並且儲存在 server's DB
 app.post("/api/register", (req, res) => {
 
+  // uuid version 4
   const id = uuid.v4();
   try {
     const path = `/user/${id}`;
-    // Create temporary secret until it it verified
+    // Create temporary secret key (pre-shard key) until it it verified
     const temp_secret = speakeasy.generateSecret();
     // Create user in the database
     db.push(path, { id, temp_secret });
-    // Send user id and base32 key to user
+
+    // Send user id and base32 temporary secret key to user (client)
     res.json({ id, secret: temp_secret.base32 })
   } catch(e) {
     console.log(e);
@@ -45,16 +45,17 @@ app.post("/api/register", (req, res) => {
   }
 });
 
-// Verify token and make secret to be checked
+// Verify token (one time password) and make temp secret key to be checked
 app.post("/api/verify", (req,res) => {
 
   // get from client
-  // token comes from Authentication
+  // token (one time password) comes from Authenticator
   const { userId, token } = req.body;
   try {
     // Retrieve user from database
     const path = `/user/${userId}`;
     const user = db.getData(path);
+    // destucturing and save into variable secret
     const { base32: secret } = user.temp_secret;
 
     // Verify process
